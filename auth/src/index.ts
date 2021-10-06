@@ -1,7 +1,7 @@
 const a = 5;
 const b = 3;
 
-function sum(a: number, b: number): number {
+export function sum(a: number, b: number): number {
   return a + b;
 }
 
