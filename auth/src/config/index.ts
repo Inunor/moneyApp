@@ -9,4 +9,9 @@ export interface User {
   refreshToken: string;
 }
 
+export interface Tokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export const users: User[] = [];
