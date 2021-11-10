@@ -17,6 +17,6 @@ export const controller = (request: Request, response: Response): void => {
     return;
   }
 
-  response.cookie('jwt', tokens, { httpOnly: true, secure: true });
+  response.cookie('jwt', tokens, { httpOnly: true });
   response.send({ email, ...tokens });
 };
