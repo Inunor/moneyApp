@@ -25,7 +25,8 @@ export class RefreshTokenService {
     }
 
     const user = users.find(
-      (user) => user.email === jwtPayload.email && user.refreshToken === refreshToken
+      (user) =>
+        user.email === jwtPayload.email && user.refreshToken === refreshToken
     );
     if (!user) {
       throw new Error('No user in database. Cannot get refresh token (403)');
