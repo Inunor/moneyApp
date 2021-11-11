@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
-  REFRESh_TOKEN_LIFE,
+  REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET,
+  TokenPayload,
   Tokens,
   User,
   users
@@ -24,11 +25,21 @@ export class SignInService {
       return;
     }
 
-    const accessToken = jwt.sign({ email: user.email }, ACCESS_TOKEN_SECRET, {
-      expiresIn: ACCESS_TOKEN_LIFE
-    });
-    const refreshToken = jwt.sign({ email: user.email }, REFRESH_TOKEN_SECRET, {
-      expiresIn: REFRESh_TOKEN_LIFE
+    const accessToken = jwt.sign(
+      { email: user.email } as TokenPayload,
+      ACCESS_TOKEN_SECRET,
+      { expiresIn: ACCESS_TOKEN_LIFE }
+    );
+    const refreshToken = jwt.sign(
+      { email: user.email } as TokenPayload,
+      REFRESH_TOKEN_SECRET,
+      { expiresIn: REFRESH_TOKEN_LIFE }
+    );
+
+    users.forEach((user) => {
+      if (user.email === email) {
+        user.refreshToken = refreshToken;
+      }
     });
 
     return { accessToken, refreshToken };
