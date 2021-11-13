@@ -10,10 +10,15 @@ import {
   users,
   TokenPayload
 } from '../../config';
+import { BadRequestError } from 'errors/bad-request-error';
 
 export class SignUpService {
   signUp(user: Pick<User, 'email' | 'password'>): Tokens {
-    // check if user already exists 400
+    const existingUser = users.find((u) => u.email === user.email);
+    if (existingUser) {
+      throw new BadRequestError('Email in use');
+    }
+
     const accessToken = jwt.sign(
       { email: user.email } as TokenPayload,
       ACCESS_TOKEN_SECRET,

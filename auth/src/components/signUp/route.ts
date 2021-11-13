@@ -4,9 +4,11 @@ import { body } from 'express-validator';
 import { validateRequest } from '../../middlewares/validate-request';
 import { controller } from './controller';
 
+export const url = '/api/users/signUp';
+
 const router = express.Router();
 router.post(
-  '/api/users/signUp',
+  url,
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password')
