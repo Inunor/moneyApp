@@ -9,10 +9,11 @@ import {
   Tokens,
   users,
   TokenPayload
-} from '../config';
+} from '../../config';
 
 export class SignUpService {
   signUp(user: Pick<User, 'email' | 'password'>): Tokens {
+    // check if user already exists 400
     const accessToken = jwt.sign(
       { email: user.email } as TokenPayload,
       ACCESS_TOKEN_SECRET,

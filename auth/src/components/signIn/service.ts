@@ -9,7 +9,7 @@ import {
   Tokens,
   User,
   users
-} from '../config';
+} from '../../config';
 
 export class SignInService {
   signIn(user: Pick<User, 'email' | 'password'>): Tokens | void {

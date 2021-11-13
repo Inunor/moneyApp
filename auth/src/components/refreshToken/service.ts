@@ -7,7 +7,7 @@ import {
   TokenPayload,
   Tokens,
   users
-} from '../config';
+} from '../../config';
 
 export class RefreshTokenService {
   refreshToken(refreshToken: string): Tokens | void {
