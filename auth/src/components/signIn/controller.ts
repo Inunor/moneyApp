@@ -5,17 +5,8 @@ import { SignInService } from './service';
 export const controller = (request: Request, response: Response): void => {
   const { email, password } = request.body;
 
-  if (!email || !password) {
-    response.sendStatus(400);
-  }
-
   const signInService = new SignInService();
   const tokens = signInService.signIn({ email, password });
-
-  if (!tokens) {
-    response.sendStatus(400);
-    return;
-  }
 
   response.cookie('jwt', tokens, { httpOnly: true });
   response.send({ email, ...tokens });

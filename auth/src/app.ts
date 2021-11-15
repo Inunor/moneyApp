@@ -8,6 +8,7 @@ import { signOutRouter } from './components/signOut/route';
 import { refreshTokenRouter } from './components/refreshToken/route';
 
 import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use(signOutRouter);
 app.use(refreshTokenRouter);
 
 app.all('*', () => {
-  throw new Error('Not found error (404)');
+  throw new NotFoundError('Route not found');
 });
 
 app.use(errorHandler);

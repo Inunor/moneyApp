@@ -1,3 +1,4 @@
+import { BadRequestError } from 'errors/bad-request-error';
 import jwt from 'jsonwebtoken';
 
 import {
@@ -17,12 +18,12 @@ export class SignInService {
 
     const existingUser = users.find((user) => user.email === email);
     if (!existingUser) {
-      return;
+      throw new BadRequestError('Invalid credentials');
     }
 
     const passwordsMatch = existingUser.password === password;
     if (!passwordsMatch) {
-      return;
+      throw new BadRequestError('Invalid credentials');
     }
 
     const accessToken = jwt.sign(
