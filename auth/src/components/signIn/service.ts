@@ -1,4 +1,3 @@
-import { BadRequestError } from 'errors/bad-request-error';
 import jwt from 'jsonwebtoken';
 
 import {
@@ -11,6 +10,7 @@ import {
   User,
   users
 } from '../../config';
+import { BadRequestError } from '../../errors/bad-request-error';
 
 export class SignInService {
   signIn(user: Pick<User, 'email' | 'password'>): Tokens | void {

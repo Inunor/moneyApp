@@ -8,6 +8,7 @@ import {
   Tokens,
   users
 } from '../../config';
+import { ForbiddenError } from '../../errors/forbidden-error';
 
 export class RefreshTokenService {
   refreshToken(refreshToken: string): Tokens | void {
@@ -19,8 +20,8 @@ export class RefreshTokenService {
         REFRESH_TOKEN_SECRET
       ) as TokenPayload;
     } catch (e) {
-      throw new Error(
-        'Refresh token was expired. Please make a new sign in request (403)'
+      throw new ForbiddenError(
+        'Refresh token was expired. Please make a new sign in request'
       );
     }
 
@@ -29,7 +30,7 @@ export class RefreshTokenService {
         user.email === jwtPayload.email && user.refreshToken === refreshToken
     );
     if (!user) {
-      throw new Error('No user in database. Cannot get refresh token (403)');
+      throw new ForbiddenError('Refresh token is not in a database');
     }
 
     const accessToken = jwt.sign(

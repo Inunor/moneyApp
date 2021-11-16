@@ -10,7 +10,7 @@ import {
   users,
   TokenPayload
 } from '../../config';
-import { BadRequestError } from 'errors/bad-request-error';
+import { BadRequestError } from '../../errors/bad-request-error';
 
 export class SignUpService {
   signUp(user: Pick<User, 'email' | 'password'>): Tokens {
