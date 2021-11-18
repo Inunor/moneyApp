@@ -6,7 +6,7 @@ import { verify } from '../verify';
 import { NotAuthorizedError } from 'errors/not-authorized-error';
 import { ForbiddenError } from 'errors/forbidden-error';
 
-describe('Verify', () => {
+describe('Verify middleware', () => {
   let mockRequest: Partial<Request>;
   let mockResponse: Partial<Response>;
   let mockNextFunction: NextFunction;
@@ -43,9 +43,7 @@ describe('Verify', () => {
   describe('Failure', () => {
     it('should return 401 error (no token provided)', () => {
       mockRequest = {
-        cookies: {
-          jwt: {}
-        }
+        cookies: {}
       };
 
       const f = () =>

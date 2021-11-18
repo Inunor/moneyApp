@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { errorHandler } from '../error-handler';
 import { NotFoundError } from 'errors/not-found-error';
 
-describe('Error handler', () => {
+describe('Error handler middleware', () => {
   let mockRequest: Partial<Request>;
   let mockResponse: Partial<Response>;
   let mockNextFunction: NextFunction;

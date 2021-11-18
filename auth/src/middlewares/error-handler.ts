@@ -16,10 +16,6 @@ export const errorHandler = (
     return;
   }
 
-  if (!process.env['JEST_WORKER_ID']) {
-    console.error(error);
-  }
-
   response.status(400).send({
     errors: [{ message: 'Something went wrong' }]
   });
