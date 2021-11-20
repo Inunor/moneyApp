@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
-  REFRESH_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET
 } from '../../config';
 import { users } from 'models/user';
 import { ForbiddenError } from '../../errors/forbidden-error';
