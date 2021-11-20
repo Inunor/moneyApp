@@ -38,6 +38,7 @@ export class SignInService {
     );
 
     users.forEach((user) => {
+      /* istanbul ignore else */
       if (user.email === email) {
         user.refreshToken = refreshToken;
       }
