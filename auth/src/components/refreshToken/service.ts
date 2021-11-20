@@ -5,9 +5,9 @@ import {
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET,
   TokenPayload,
-  Tokens,
-  users
+  Tokens
 } from '../../config';
+import { users } from 'models/user';
 import { ForbiddenError } from '../../errors/forbidden-error';
 
 export class RefreshTokenService {

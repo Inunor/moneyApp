@@ -6,19 +6,24 @@ import { url as signUpUrl } from '../../signUp/route';
 import { url as signInUrl } from '../../signIn/route';
 import app from '../../../app';
 import { REFRESH_TOKEN_SECRET, TokenPayload } from 'config';
+import { UserPayload } from 'models/user';
 
 describe('RefreshToken', () => {
   describe('Success', () => {
     it('should return 200 with valid body', async () => {
-      await request(app).post(signUpUrl).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      await request(app)
+        .post(signUpUrl)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
-      const signInResponse = await request(app).post(signInUrl).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const signInResponse = await request(app)
+        .post(signInUrl)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       const refreshTokenResponse = await request(app).post(url).send({
         refreshToken: signInResponse.body.refreshToken
@@ -75,15 +80,19 @@ describe('RefreshToken', () => {
 
     describe('should return 403 with refresh token absence in a database', () => {
       it('incorrect email', async () => {
-        await request(app).post(signUpUrl).send({
-          email: 'test@test.com',
-          password: 'test1234'
-        });
+        await request(app)
+          .post(signUpUrl)
+          .send({
+            email: 'test@test.com',
+            password: 'test1234'
+          } as UserPayload);
 
-        await request(app).post(signInUrl).send({
-          email: 'test@test.com',
-          password: 'anotherPassword'
-        });
+        await request(app)
+          .post(signInUrl)
+          .send({
+            email: 'test@test.com',
+            password: 'anotherPassword'
+          } as UserPayload);
 
         const refreshToken = jwt.sign(
           { email: 'anotherTest@test.com' } as TokenPayload,
@@ -108,15 +117,19 @@ describe('RefreshToken', () => {
       });
 
       it('incorrect refresh token', async () => {
-        await request(app).post(signUpUrl).send({
-          email: 'test@test.com',
-          password: 'test1234'
-        });
+        await request(app)
+          .post(signUpUrl)
+          .send({
+            email: 'test@test.com',
+            password: 'test1234'
+          } as UserPayload);
 
-        await request(app).post(signInUrl).send({
-          email: 'test@test.com',
-          password: 'test1234'
-        });
+        await request(app)
+          .post(signInUrl)
+          .send({
+            email: 'test@test.com',
+            password: 'test1234'
+          } as UserPayload);
 
         const refreshToken = jwt.sign(
           { email: 'test@test.com' } as TokenPayload,

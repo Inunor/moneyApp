@@ -3,13 +3,16 @@ import request from 'supertest';
 import { url } from '../route';
 import { url as signUpUrl } from '../../signUp/route';
 import app from '../../../app';
+import { UserPayload } from 'models/user';
 
 describe('SignOut', () => {
   it('should clear the cookie', async () => {
-    const signUpResponse = await request(app).post(signUpUrl).send({
-      email: 'test@test.com',
-      password: 'test1234'
-    });
+    const signUpResponse = await request(app)
+      .post(signUpUrl)
+      .send({
+        email: 'test@test.com',
+        password: 'test1234'
+      } as UserPayload);
 
     const signOutResponse = await request(app).post(url).send();
 

@@ -3,19 +3,24 @@ import request from 'supertest';
 import { url } from '../route';
 import { url as signUpUrl } from '../../signUp/route';
 import app from '../../../app';
+import { UserPayload } from 'models/user';
 
 describe('SignIn', () => {
   describe('Success', () => {
     const successHelper = async () => {
-      const signUpResponse = await request(app).post(signUpUrl).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const signUpResponse = await request(app)
+        .post(signUpUrl)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
-      const signInResponse = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const signInResponse = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       return { signInResponse, signUpResponse };
     };
@@ -44,10 +49,12 @@ describe('SignIn', () => {
 
   describe('Failure', () => {
     it('should return 400 with an invalid email', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test',
-        password: 'test1234'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test',
+          password: 'test1234'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -63,10 +70,12 @@ describe('SignIn', () => {
     });
 
     it('should return 400 with an invalid password', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 't'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 't'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -100,9 +109,11 @@ describe('SignIn', () => {
     });
 
     it('should return 400 with a missing password', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@.test.com'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@.test.com'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -122,15 +133,19 @@ describe('SignIn', () => {
     });
 
     it('should return 400 user mismatch', async () => {
-      const signUpResponse = await request(app).post(signUpUrl).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const signUpResponse = await request(app)
+        .post(signUpUrl)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
-      const signInResponse = await request(app).post(url).send({
-        email: 'anotherTest@test.com',
-        password: 'test1234'
-      });
+      const signInResponse = await request(app)
+        .post(url)
+        .send({
+          email: 'anotherTest@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);
@@ -146,15 +161,19 @@ describe('SignIn', () => {
     });
 
     it('should return 400 password mismatch', async () => {
-      const signUpResponse = await request(app).post(signUpUrl).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const signUpResponse = await request(app)
+        .post(signUpUrl)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
-      const signInResponse = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'anotherTest1234'
-      });
+      const signInResponse = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'anotherTest1234'
+        } as UserPayload);
 
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);

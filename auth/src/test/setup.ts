@@ -1,4 +1,4 @@
-import { users } from 'config';
+import { users } from '../models/user';
 
 beforeEach(async () => {
   while (users.length) {

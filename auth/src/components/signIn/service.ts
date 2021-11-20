@@ -6,14 +6,13 @@ import {
   REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET,
   TokenPayload,
-  Tokens,
-  User,
-  users
+  Tokens
 } from '../../config';
+import { UserPayload, users } from 'models/user';
 import { BadRequestError } from '../../errors/bad-request-error';
 
 export class SignInService {
-  signIn(user: Pick<User, 'email' | 'password'>): Tokens | void {
+  signIn(user: UserPayload): Tokens | void {
     const { email, password } = user;
 
     const existingUser = users.find((user) => user.email === email);

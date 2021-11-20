@@ -5,15 +5,14 @@ import {
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET,
-  User,
   Tokens,
-  users,
   TokenPayload
 } from '../../config';
+import { UserPayload, users } from 'models/user';
 import { BadRequestError } from '../../errors/bad-request-error';
 
 export class SignUpService {
-  signUp(user: Pick<User, 'email' | 'password'>): Tokens {
+  signUp(user: UserPayload): Tokens {
     const existingUser = users.find((u) => u.email === user.email);
     if (existingUser) {
       throw new BadRequestError('Email in use');

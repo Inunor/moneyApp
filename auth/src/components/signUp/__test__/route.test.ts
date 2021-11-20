@@ -2,14 +2,17 @@ import request from 'supertest';
 
 import { url } from '../route';
 import app from '../../../app';
+import { UserPayload } from 'models/user';
 
 describe('SignUp', () => {
   describe('Success', () => {
     it('should return 201 with valid body', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       expect(response.status).toBe(201);
       expect(Object.keys(response.body)).toEqual([
@@ -20,10 +23,12 @@ describe('SignUp', () => {
     });
 
     it('should set a cookie', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       const cookie = response.get('Set-Cookie');
 
@@ -34,10 +39,12 @@ describe('SignUp', () => {
 
   describe('Failure', () => {
     it('should return 400 with an invalid email', async () => {
-      const response = await request(app).post(url).send({
-        email: 'invalid email',
-        password: 'test1234'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'invalid email',
+          password: 'test1234'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -53,10 +60,12 @@ describe('SignUp', () => {
     });
 
     it('should return 400 with an invalid password', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'p'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'p'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -72,9 +81,11 @@ describe('SignUp', () => {
     });
 
     it('should return 400 with a missing email', async () => {
-      const response = await request(app).post(url).send({
-        password: 'test1234'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          password: 'test1234'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -90,9 +101,11 @@ describe('SignUp', () => {
     });
 
     it('should return 400 with a missing password', async () => {
-      const response = await request(app).post(url).send({
-        email: 'test@test.com'
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com'
+        } as UserPayload);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -108,15 +121,19 @@ describe('SignUp', () => {
     });
 
     it('should return 400 with a duplicate user email', async () => {
-      const firstResponse = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const firstResponse = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
-      const secondResponse = await request(app).post(url).send({
-        email: 'test@test.com',
-        password: 'test1234'
-      });
+      const secondResponse = await request(app)
+        .post(url)
+        .send({
+          email: 'test@test.com',
+          password: 'test1234'
+        } as UserPayload);
 
       expect(firstResponse.status).toBe(201);
       expect(secondResponse.status).toBe(400);
