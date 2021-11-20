@@ -5,7 +5,7 @@ import { ACCESS_TOKEN_LIFE, ACCESS_TOKEN_SECRET } from 'config';
 import { verify } from '../verify';
 import { NotAuthorizedError } from 'errors/not-authorized-error';
 import { ForbiddenError } from 'errors/forbidden-error';
-import { TokenPayload } from 'models/token';
+import { TokenPayload, Tokens } from 'models/token';
 
 describe('Verify middleware', () => {
   let mockRequest: Partial<Request>;
@@ -27,7 +27,7 @@ describe('Verify middleware', () => {
       );
       mockRequest = {
         cookies: {
-          jwt: { accessToken }
+          jwt: { accessToken } as Tokens
         }
       };
 
@@ -66,7 +66,7 @@ describe('Verify middleware', () => {
       );
       mockRequest = {
         cookies: {
-          jwt: { accessToken }
+          jwt: { accessToken } as Tokens
         }
       };
 
