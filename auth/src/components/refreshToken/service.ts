@@ -4,11 +4,10 @@ import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET,
-  TokenPayload,
-  Tokens
 } from '../../config';
 import { users } from 'models/user';
 import { ForbiddenError } from '../../errors/forbidden-error';
+import { TokenPayload, Tokens } from 'models/token';
 
 export class RefreshTokenService {
   refreshToken(refreshToken: string): Tokens | void {

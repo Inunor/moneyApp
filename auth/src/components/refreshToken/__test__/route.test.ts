@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
 
+import app from '../../../app';
 import { url } from '../route';
 import { url as signUpUrl } from '../../signUp/route';
 import { url as signInUrl } from '../../signIn/route';
-import app from '../../../app';
-import { REFRESH_TOKEN_SECRET, TokenPayload } from 'config';
+import { REFRESH_TOKEN_SECRET } from 'config';
 import { UserPayload } from 'models/user';
+import { TokenPayload } from 'models/token';
+import { RefreshTokenPayload } from '../model';
 
 describe('RefreshToken', () => {
   describe('Success', () => {
@@ -25,9 +27,11 @@ describe('RefreshToken', () => {
           password: 'test1234'
         } as UserPayload);
 
-      const refreshTokenResponse = await request(app).post(url).send({
-        refreshToken: signInResponse.body.refreshToken
-      });
+      const refreshTokenResponse = await request(app)
+        .post(url)
+        .send({
+          refreshToken: signInResponse.body.refreshToken
+        } as RefreshTokenPayload);
 
       expect(refreshTokenResponse.status).toBe(200);
       expect(refreshTokenResponse.get('Set-Cookie')).toBeDefined();
@@ -62,9 +66,11 @@ describe('RefreshToken', () => {
         { expiresIn: 0 }
       );
 
-      const response = await request(app).post(url).send({
-        refreshToken
-      });
+      const response = await request(app)
+        .post(url)
+        .send({
+          refreshToken
+        } as RefreshTokenPayload);
 
       expect(response.status).toBe(403);
       expect(response.body).toMatchInlineSnapshot(`
@@ -100,9 +106,11 @@ describe('RefreshToken', () => {
           { expiresIn: 60 }
         );
 
-        const response = await request(app).post(url).send({
-          refreshToken
-        });
+        const response = await request(app)
+          .post(url)
+          .send({
+            refreshToken
+          } as RefreshTokenPayload);
 
         expect(response.status).toBe(403);
         expect(response.body).toMatchInlineSnapshot(`
@@ -137,9 +145,11 @@ describe('RefreshToken', () => {
           { expiresIn: 60 }
         );
 
-        const response = await request(app).post(url).send({
-          refreshToken
-        });
+        const response = await request(app)
+          .post(url)
+          .send({
+            refreshToken
+          } as RefreshTokenPayload);
 
         expect(response.status).toBe(403);
         expect(response.body).toMatchInlineSnapshot(`

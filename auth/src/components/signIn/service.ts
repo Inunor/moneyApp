@@ -4,12 +4,11 @@ import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_LIFE,
-  REFRESH_TOKEN_SECRET,
-  TokenPayload,
-  Tokens
+  REFRESH_TOKEN_SECRET
 } from '../../config';
 import { UserPayload, users } from 'models/user';
 import { BadRequestError } from '../../errors/bad-request-error';
+import { TokenPayload, Tokens } from 'models/token';
 
 export class SignInService {
   signIn(user: UserPayload): Tokens | void {
