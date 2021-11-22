@@ -1,21 +1,11 @@
-import request from 'supertest';
-
-import { url } from '../route';
-import app from '../../../app';
-import { UserPayload } from 'models/user';
 import { signUpHelper } from '__test__/helpers/signUp';
+import { signInHelper } from '__test__/helpers/signIn';
 
 describe('SignIn', () => {
   describe('Success', () => {
     const successHelper = async () => {
       const signUpResponse = await signUpHelper();
-
-      const signInResponse = await request(app)
-        .post(url)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signInResponse = await signInHelper();
 
       return { signInResponse, signUpResponse };
     };
@@ -44,12 +34,7 @@ describe('SignIn', () => {
 
   describe('Failure', () => {
     it('should return 400 with an invalid email', async () => {
-      const response = await request(app)
-        .post(url)
-        .send({
-          email: 'test',
-          password: 'test1234'
-        } as UserPayload);
+      const response = await signInHelper({ email: 'tets' });
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -65,12 +50,7 @@ describe('SignIn', () => {
     });
 
     it('should return 400 with an invalid password', async () => {
-      const response = await request(app)
-        .post(url)
-        .send({
-          email: 'test@test.com',
-          password: 't'
-        } as UserPayload);
+      const response = await signInHelper({ password: 'p' });
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -86,9 +66,7 @@ describe('SignIn', () => {
     });
 
     it('should return 400 with a missing email', async () => {
-      const response = await request(app).post(url).send({
-        password: 'test1234'
-      });
+      const response = await signInHelper({ password: 'test1234' }, true);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
@@ -104,20 +82,12 @@ describe('SignIn', () => {
     });
 
     it('should return 400 with a missing password', async () => {
-      const response = await request(app)
-        .post(url)
-        .send({
-          email: 'test@.test.com'
-        } as UserPayload);
+      const response = await signInHelper({ email: 'test@test.com' }, true);
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
         Object {
           "errors": Array [
-            Object {
-              "field": "email",
-              "message": "Email must be valid",
-            },
             Object {
               "field": "password",
               "message": "Password must be between 2 and 20 characters",
@@ -129,13 +99,9 @@ describe('SignIn', () => {
 
     it('should return 400 user mismatch', async () => {
       const signUpResponse = await signUpHelper();
-
-      const signInResponse = await request(app)
-        .post(url)
-        .send({
-          email: 'anotherTest@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signInResponse = await signInHelper({
+        email: 'anotherTest@test.com'
+      });
 
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);
@@ -152,13 +118,9 @@ describe('SignIn', () => {
 
     it('should return 400 password mismatch', async () => {
       const signUpResponse = await signUpHelper();
-
-      const signInResponse = await request(app)
-        .post(url)
-        .send({
-          email: 'test@test.com',
-          password: 'anotherTest1234'
-        } as UserPayload);
+      const signInResponse = await signInHelper({
+        password: 'anotherTest1234'
+      });
 
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);

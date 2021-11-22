@@ -3,24 +3,17 @@ import request from 'supertest';
 
 import app from '../../../app';
 import { url } from '../route';
-import { url as signInUrl } from '../../signIn/route';
 import { REFRESH_TOKEN_SECRET } from 'config';
-import { UserPayload } from 'models/user';
 import { TokenPayload } from 'models/token';
 import { RefreshTokenPayload } from '../model';
 import { signUpHelper } from '__test__/helpers/signUp';
+import { signInHelper } from '__test__/helpers/signIn';
 
 describe('RefreshToken', () => {
   describe('Success', () => {
     it('should return 200 with valid body', async () => {
       await signUpHelper();
-
-      const signInResponse = await request(app)
-        .post(signInUrl)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signInResponse = await signInHelper();
 
       const refreshTokenResponse = await request(app)
         .post(url)
@@ -82,13 +75,7 @@ describe('RefreshToken', () => {
     describe('should return 403 with refresh token absence in a database', () => {
       it('incorrect email', async () => {
         await signUpHelper();
-
-        await request(app)
-          .post(signInUrl)
-          .send({
-            email: 'test@test.com',
-            password: 'anotherPassword'
-          } as UserPayload);
+        await signInHelper({ password: 'anotherPassword' });
 
         const refreshToken = jwt.sign(
           { email: 'anotherTest@test.com' } as TokenPayload,
@@ -116,13 +103,7 @@ describe('RefreshToken', () => {
 
       it('incorrect refresh token', async () => {
         await signUpHelper();
-
-        await request(app)
-          .post(signInUrl)
-          .send({
-            email: 'test@test.com',
-            password: 'test1234'
-          } as UserPayload);
+        await signInHelper();
 
         const refreshToken = jwt.sign(
           { email: 'test@test.com' } as TokenPayload,
