@@ -1,19 +1,14 @@
 import request from 'supertest';
 
 import { url } from '../route';
-import { url as signUpUrl } from '../../signUp/route';
 import app from '../../../app';
 import { UserPayload } from 'models/user';
+import { signUpHelper } from '__test__/helpers/signUp';
 
 describe('SignIn', () => {
   describe('Success', () => {
     const successHelper = async () => {
-      const signUpResponse = await request(app)
-        .post(signUpUrl)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signUpResponse = await signUpHelper();
 
       const signInResponse = await request(app)
         .post(url)
@@ -133,12 +128,7 @@ describe('SignIn', () => {
     });
 
     it('should return 400 user mismatch', async () => {
-      const signUpResponse = await request(app)
-        .post(signUpUrl)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signUpResponse = await signUpHelper();
 
       const signInResponse = await request(app)
         .post(url)
@@ -161,12 +151,7 @@ describe('SignIn', () => {
     });
 
     it('should return 400 password mismatch', async () => {
-      const signUpResponse = await request(app)
-        .post(signUpUrl)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      const signUpResponse = await signUpHelper();
 
       const signInResponse = await request(app)
         .post(url)

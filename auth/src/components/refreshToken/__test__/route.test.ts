@@ -3,22 +3,17 @@ import request from 'supertest';
 
 import app from '../../../app';
 import { url } from '../route';
-import { url as signUpUrl } from '../../signUp/route';
 import { url as signInUrl } from '../../signIn/route';
 import { REFRESH_TOKEN_SECRET } from 'config';
 import { UserPayload } from 'models/user';
 import { TokenPayload } from 'models/token';
 import { RefreshTokenPayload } from '../model';
+import { signUpHelper } from '__test__/helpers/signUp';
 
 describe('RefreshToken', () => {
   describe('Success', () => {
     it('should return 200 with valid body', async () => {
-      await request(app)
-        .post(signUpUrl)
-        .send({
-          email: 'test@test.com',
-          password: 'test1234'
-        } as UserPayload);
+      await signUpHelper();
 
       const signInResponse = await request(app)
         .post(signInUrl)
@@ -86,12 +81,7 @@ describe('RefreshToken', () => {
 
     describe('should return 403 with refresh token absence in a database', () => {
       it('incorrect email', async () => {
-        await request(app)
-          .post(signUpUrl)
-          .send({
-            email: 'test@test.com',
-            password: 'test1234'
-          } as UserPayload);
+        await signUpHelper();
 
         await request(app)
           .post(signInUrl)
@@ -125,12 +115,7 @@ describe('RefreshToken', () => {
       });
 
       it('incorrect refresh token', async () => {
-        await request(app)
-          .post(signUpUrl)
-          .send({
-            email: 'test@test.com',
-            password: 'test1234'
-          } as UserPayload);
+        await signUpHelper();
 
         await request(app)
           .post(signInUrl)

@@ -1,18 +1,12 @@
 import request from 'supertest';
 
 import { url } from '../route';
-import { url as signUpUrl } from '../../signUp/route';
 import app from '../../../app';
-import { UserPayload } from 'models/user';
+import { signUpHelper } from '__test__/helpers/signUp';
 
 describe('SignOut', () => {
   it('should clear the cookie', async () => {
-    const signUpResponse = await request(app)
-      .post(signUpUrl)
-      .send({
-        email: 'test@test.com',
-        password: 'test1234'
-      } as UserPayload);
+    const signUpResponse = await signUpHelper();
 
     const signOutResponse = await request(app).post(url).send();
 
