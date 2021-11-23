@@ -1,4 +1,5 @@
 import { ValidationError } from 'express-validator';
+
 import { RequestValidationError } from '../request-validation-error';
 
 describe('Request validation error', () => {

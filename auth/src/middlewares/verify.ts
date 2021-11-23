@@ -2,9 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { ACCESS_TOKEN_SECRET } from 'config';
+import { Tokens } from 'models/token';
+
 import { NotAuthorizedError } from '../errors/not-authorized-error';
 import { ForbiddenError } from '../errors/forbidden-error';
-import { Tokens } from 'models/token';
 
 export const verify = (
   request: Request,

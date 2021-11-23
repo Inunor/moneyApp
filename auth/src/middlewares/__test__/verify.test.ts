@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { ACCESS_TOKEN_LIFE, ACCESS_TOKEN_SECRET } from 'config';
-import { verify } from '../verify';
 import { NotAuthorizedError } from 'errors/not-authorized-error';
 import { ForbiddenError } from 'errors/forbidden-error';
 import { TokenPayload, Tokens } from 'models/token';
+
+import { verify } from '../verify';
 
 describe('Verify middleware', () => {
   let mockRequest: Partial<Request>;

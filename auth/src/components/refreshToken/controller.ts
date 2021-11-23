@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { tokensCookieKey } from 'models/token';
+
 import { RefreshTokenPayload } from './model';
 import { RefreshTokenService } from './service';
 

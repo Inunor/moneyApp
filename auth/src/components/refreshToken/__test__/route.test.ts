@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
 
-import app from '../../../app';
-import { url } from '../route';
 import { REFRESH_TOKEN_SECRET } from 'config';
 import { TokenPayload } from 'models/token';
-import { RefreshTokenPayload } from '../model';
 import { signUpHelper } from '__test__/helpers/signUp';
 import { signInHelper } from '__test__/helpers/signIn';
+
+import { RefreshTokenPayload } from '../model';
+import { url } from '../route';
+import app from '../../../app';
 
 describe('RefreshToken', () => {
   describe('Success', () => {

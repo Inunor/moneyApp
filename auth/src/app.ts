@@ -6,7 +6,6 @@ import { signUpRouter } from './components/signUp/route';
 import { signInRouter } from './components/signIn/route';
 import { signOutRouter } from './components/signOut/route';
 import { refreshTokenRouter } from './components/refreshToken/route';
-
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 

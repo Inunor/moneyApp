@@ -1,8 +1,9 @@
 import express from 'express';
 import { body } from 'express-validator';
 
+import { validateRequest } from 'middlewares/validate-request';
+
 import { controller } from './controller';
-import { validateRequest } from '../../middlewares/validate-request';
 
 export const url = '/api/users/signIn';
 

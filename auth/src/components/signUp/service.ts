@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
 
+import { UserPayload, users } from 'models/user';
+import { TokenPayload, Tokens } from 'models/token';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET
-} from '../../config';
-import { UserPayload, users } from 'models/user';
-import { BadRequestError } from '../../errors/bad-request-error';
-import { TokenPayload, Tokens } from 'models/token';
+} from 'config';
+import { BadRequestError } from 'errors/bad-request-error';
 
 export class SignUpService {
   signUp(user: UserPayload): Tokens {

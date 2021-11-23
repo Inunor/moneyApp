@@ -1,8 +1,9 @@
 import request from 'supertest';
 
+import { signUpHelper } from '__test__/helpers/signUp';
+
 import { url } from '../route';
 import app from '../../../app';
-import { signUpHelper } from '__test__/helpers/signUp';
 
 describe('SignOut', () => {
   it('should clear the cookie', async () => {

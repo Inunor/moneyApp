@@ -1,8 +1,9 @@
 import request, { Response } from 'supertest';
 
+import { UserPayload } from 'models/user';
+
 import app from '../../app';
 import { url } from '../../components/signIn/route';
-import { UserPayload } from 'models/user';
 
 export const signInHelper = async (
   payload?: Partial<UserPayload>,

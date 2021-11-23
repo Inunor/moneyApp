@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 
+import { users } from 'models/user';
+import { TokenPayload, Tokens } from 'models/token';
+import { ForbiddenError } from 'errors/forbidden-error';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET
-} from '../../config';
-import { users } from 'models/user';
-import { ForbiddenError } from '../../errors/forbidden-error';
-import { TokenPayload, Tokens } from 'models/token';
+} from 'config';
 
 export class RefreshTokenService {
   refreshToken(refreshToken: string): Tokens | void {

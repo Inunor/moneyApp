@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 
-import { tokensCookieKey } from 'models/token';
 import { UserPayload } from 'models/user';
+import { tokensCookieKey } from 'models/token';
+
 import { SignUpService } from './service';
 
 export const controller = (request: Request, response: Response): void => {
