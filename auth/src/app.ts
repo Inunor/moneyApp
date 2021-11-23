@@ -11,6 +11,8 @@ import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
 
+// TODO add { secure } flag to res.cookie methods (false for dev, true for prod)
+
 app.use(json());
 app.use(cookieParser());
 
