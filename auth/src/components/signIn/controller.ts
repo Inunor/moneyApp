@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 
+import { tokensCookieKey } from 'models/token';
 import { UserPayload } from 'models/user';
 import { SignInService } from './service';
 
@@ -9,6 +10,6 @@ export const controller = (request: Request, response: Response): void => {
   const signInService = new SignInService();
   const tokens = signInService.signIn({ email, password });
 
-  response.cookie('jwt', tokens, { httpOnly: true });
+  response.cookie(tokensCookieKey, tokens, { httpOnly: true });
   response.send({ email, ...tokens });
 };

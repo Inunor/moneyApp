@@ -8,3 +8,5 @@ export interface Tokens {
 export interface TokenPayload extends JwtPayload {
   email: string;
 }
+
+export const tokensCookieKey = 'jwt';
