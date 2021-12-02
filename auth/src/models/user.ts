@@ -22,11 +22,11 @@ const userSchema = new Schema<UserDoc, UserModel>({
   }
 });
 
-export const User = model<UserDoc, UserModel>('User', userSchema);
-
 userSchema.statics['build'] = (attrs: UserAttrs) => {
   return new User(attrs);
 };
+
+export const User = model<UserDoc, UserModel>('User', userSchema);
 
 // TODO remove below code
 
