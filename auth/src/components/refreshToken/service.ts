@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { users } from 'models/user';
+import { User } from 'models/user';
 import { TokenPayload, Tokens } from 'models/token';
 import { ForbiddenError } from 'errors/forbidden-error';
 import {
@@ -10,7 +10,7 @@ import {
 } from 'config';
 
 export class RefreshTokenService {
-  refreshToken(refreshToken: string): Tokens | void {
+  async refreshToken(refreshToken: string): Promise<Tokens | void> {
     let jwtPayload: TokenPayload;
 
     try {
@@ -24,10 +24,11 @@ export class RefreshTokenService {
       );
     }
 
-    const user = users.find(
-      (user) =>
-        user.email === jwtPayload.email && user.refreshToken === refreshToken
-    );
+    const user = await User.findOne({
+      email: jwtPayload.email,
+      refreshToken: refreshToken
+    });
+
     if (!user) {
       throw new ForbiddenError('Refresh token is not in a database');
     }

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { UserPayload, users, User } from 'models/user';
+import { UserPayload, User } from 'models/user';
 import { TokenPayload, Tokens } from 'models/token';
 import {
   ACCESS_TOKEN_LIFE,
@@ -12,9 +12,8 @@ import { BadRequestError } from 'errors/bad-request-error';
 
 export class SignUpService {
   async signUp(userPayload: UserPayload): Promise<Tokens> {
-    const existingUser_ = await User.findOne({ email: userPayload.email });
-    const existingUser = users.find((u) => u.email === userPayload.email);
-    if (existingUser || existingUser_) {
+    const existingUser = await User.exists({ email: userPayload.email });
+    if (existingUser) {
       throw new BadRequestError('Email in use');
     }
 
@@ -29,9 +28,8 @@ export class SignUpService {
       { expiresIn: REFRESH_TOKEN_LIFE }
     );
 
-    const user = User.build({ ...userPayload });
+    const user = User.build({ ...userPayload, refreshToken });
     await user.save();
-    users.push({ ...userPayload, refreshToken });
 
     return { accessToken, refreshToken };
   }

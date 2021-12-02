@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { UserPayload, users } from 'models/user';
+import { User, UserPayload } from 'models/user';
 import { TokenPayload, Tokens } from 'models/token';
 import {
   ACCESS_TOKEN_LIFE,
@@ -11,10 +11,10 @@ import {
 import { BadRequestError } from 'errors/bad-request-error';
 
 export class SignInService {
-  signIn(user: UserPayload): Tokens | void {
+  async signIn(user: UserPayload): Promise<Tokens | void> {
     const { email, password } = user;
 
-    const existingUser = users.find((user) => user.email === email);
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
@@ -25,21 +25,18 @@ export class SignInService {
     }
 
     const accessToken = jwt.sign(
-      { email: user.email } as TokenPayload,
+      { email } as TokenPayload,
       ACCESS_TOKEN_SECRET,
       { expiresIn: ACCESS_TOKEN_LIFE }
     );
     const refreshToken = jwt.sign(
-      { email: user.email } as TokenPayload,
+      { email } as TokenPayload,
       REFRESH_TOKEN_SECRET,
       { expiresIn: REFRESH_TOKEN_LIFE }
     );
 
-    users.forEach((user) => {
-      /* istanbul ignore else */
-      if (user.email === email) {
-        user.refreshToken = refreshToken;
-      }
+    await existingUser.updateOne({
+      refreshToken
     });
 
     return { accessToken, refreshToken };
