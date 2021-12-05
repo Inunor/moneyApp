@@ -24,6 +24,7 @@ const config: Config.InitialOptions = {
     }
   },
   moduleFileExtensions: ['ts', 'js'],
+  modulePaths: ['<rootDir>/src/'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
