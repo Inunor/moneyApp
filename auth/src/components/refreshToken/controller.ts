@@ -1,16 +1,24 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { tokensCookieKey } from 'models/token';
 
 import { RefreshTokenPayload } from './model';
 import { RefreshTokenService } from './service';
 
-export const controller = (request: Request, response: Response): void => {
-  const { refreshToken } = request.body as RefreshTokenPayload;
+export const controller = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { refreshToken } = request.body as RefreshTokenPayload;
 
-  const refreshTokenService = new RefreshTokenService();
-  const tokens = refreshTokenService.refreshToken(refreshToken);
+    const refreshTokenService = new RefreshTokenService();
+    const tokens = await refreshTokenService.refreshToken(refreshToken);
 
-  response.cookie(tokensCookieKey, tokens, { httpOnly: true });
-  response.send({ ...tokens });
+    response.cookie(tokensCookieKey, tokens, { httpOnly: true });
+    response.send({ ...tokens });
+  } catch (e) {
+    next(e);
+  }
 };
