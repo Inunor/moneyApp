@@ -9,7 +9,7 @@ export const signInHelper = async (
   payload?: Partial<UserPayload>,
   completelyOverride = false
 ): Promise<Response> => {
-  return await request(app)
+  return request(app)
     .post(url)
     .send(
       completelyOverride

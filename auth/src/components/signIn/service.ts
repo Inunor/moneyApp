@@ -19,7 +19,7 @@ export class SignInService {
       throw new BadRequestError('Invalid credentials');
     }
 
-    const passwordsMatch = existingUser.password === password;
+    const passwordsMatch = await existingUser.validatePassword(password);
     if (!passwordsMatch) {
       throw new BadRequestError('Invalid credentials');
     }
