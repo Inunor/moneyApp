@@ -21,7 +21,8 @@ interface UserModel extends Model<UserDoc> {
 const userSchema = new Schema<UserDoc, UserModel>({
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
