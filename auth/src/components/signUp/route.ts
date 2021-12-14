@@ -1,6 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
 
+import { asyncErrorHandler } from 'middlewares/async-error-handler';
 import { validateRequest } from 'middlewares/validate-request';
 
 import { controller } from './controller';
@@ -18,7 +19,7 @@ router.post(
       .withMessage('Password must be between 2 and 20 characters')
   ],
   validateRequest,
-  controller
+  asyncErrorHandler(controller)
 );
 
 export { router as signUpRouter };
