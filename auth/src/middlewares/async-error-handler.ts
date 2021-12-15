@@ -8,6 +8,10 @@ export const asyncErrorHandler =
       next: NextFunction
     ) => unknown
   ) =>
-  (request: Request, response: Response, next: NextFunction): unknown => {
+  (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<unknown> => {
     return Promise.resolve(routeHandler(request, response, next)).catch(next);
   };
