@@ -9,7 +9,7 @@
     "start:dev": "nodemon",
     "clean": "rimraf ./dist",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "lint": "eslint . --ext .ts --fix",
+    "lint": "eslint  --ext .ts --fix",
     "test": "jest"
   },
   "husky": {

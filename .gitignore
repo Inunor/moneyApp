@@ -6,3 +6,6 @@ dist
 
 # Ignore test coverage
 coverage
+
+# Ignore ide settings
+.idea
