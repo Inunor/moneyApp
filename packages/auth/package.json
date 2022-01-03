@@ -15,7 +15,8 @@
     "clean": "rimraf ./dist",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint  --ext .ts --fix",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "husky": {
     "hooks": {
