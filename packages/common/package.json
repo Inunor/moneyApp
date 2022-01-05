@@ -8,7 +8,7 @@
   ],
   "description": "",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run project-hook",
+    "build": "npm run clean && npm run compile && npm run format && npm run lint",
     "compile": "tsc -p tsconfig.build.json",
     "clean": "rimraf ./dist ./coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
