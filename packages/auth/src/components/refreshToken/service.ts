@@ -11,7 +11,7 @@ import {
 
 export class RefreshTokenService {
   async refreshToken(refreshToken: string): Promise<Tokens | void> {
-    var jwtPayload: TokenPayload;
+    let jwtPayload: TokenPayload;
 
     try {
       jwtPayload = jwt.verify(
