@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { NotAuthorizedError, ForbiddenError } from '@bakinun/common';
 
 import { ACCESS_TOKEN_LIFE, ACCESS_TOKEN_SECRET } from 'config';
-import { NotAuthorizedError } from 'errors/not-authorized-error';
-import { ForbiddenError } from 'errors/forbidden-error';
 import { TokenPayload, Tokens } from 'models/token';
 
 import { verify } from '../verify';

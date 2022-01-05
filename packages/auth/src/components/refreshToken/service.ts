@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
+import { ForbiddenError } from '@bakinun/common';
 
 import { User } from 'models/user';
 import { TokenPayload, Tokens } from 'models/token';
-import { ForbiddenError } from 'errors/forbidden-error';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-
-import { NotFoundError } from 'errors/not-found-error';
+import { NotFoundError } from '@bakinun/common';
 
 import { errorHandler } from '../error-handler';
 

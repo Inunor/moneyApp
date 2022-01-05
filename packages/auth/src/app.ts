@@ -1,13 +1,12 @@
 import express from 'express';
 import { json } from 'body-parser';
 import cookieParser from 'cookie-parser';
-import { errorHandler } from '@bakinun/common';
+import { errorHandler, NotFoundError } from '@bakinun/common';
 
 import { signUpRouter } from './components/signUp/route';
 import { signInRouter } from './components/signIn/route';
 import { signOutRouter } from './components/signOut/route';
 import { refreshTokenRouter } from './components/refreshToken/route';
-import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
 

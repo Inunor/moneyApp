@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { BadRequestError } from '@bakinun/common';
 
 import { UserPayload, User } from 'models/user';
 import { TokenPayload, Tokens } from 'models/token';
@@ -8,7 +9,6 @@ import {
   REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET
 } from 'config';
-import { BadRequestError } from 'errors/bad-request-error';
 
 export class SignUpService {
   async signUp(userPayload: UserPayload): Promise<Tokens> {
