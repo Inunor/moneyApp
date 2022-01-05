@@ -4,9 +4,12 @@
   "scripts": {
     "build": "lerna bootstrap",
     "clean": "lerna run clean",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "project-hook": "lerna run project-hook",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "husky": "^7.0.0"
   }
 }

@@ -8,7 +8,7 @@
   ],
   "description": "",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run format && npm run lint",
+    "build": "npm run clean && npm run compile && npm run project-hook",
     "compile": "tsc -p tsconfig.build.json",
     "start": "npm run build && NODE_PATH=./dist node dist/server.js",
     "start:dev": "nodemon",
@@ -16,12 +16,8 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint  --ext .ts --fix",
     "test": "jest",
-    "prepare": "npm run build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint"
-    }
+    "prepare": "npm run build",
+    "project-hook": "npm run format && npm run lint"
   },
   "author": "",
   "license": "ISC",
@@ -50,7 +46,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^24.5.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^4.2.3",
+    "husky": "^7.0.4",
     "jest": "^27.2.4",
     "mongodb-memory-server": "^8.0.4",
     "nodemon": "^2.0.13",
