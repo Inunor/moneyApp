@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import { tokensCookieKey } from '@bakinun/common';
 
-import { tokensCookieKey } from 'models/token';
 import { UserPayload } from 'models/user';
 
 import { SignInService } from './service';

@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { BadRequestError } from '@bakinun/common';
+import { BadRequestError, TokenPayload, Tokens } from '@bakinun/common';
 
 import { User, UserPayload } from 'models/user';
-import { TokenPayload, Tokens } from 'models/token';
 import {
   ACCESS_TOKEN_LIFE,
   ACCESS_TOKEN_SECRET,

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-
-import { tokensCookieKey } from 'models/token';
+import { tokensCookieKey } from '@bakinun/common';
 
 import { RefreshTokenPayload } from './model';
 import { RefreshTokenService } from './service';

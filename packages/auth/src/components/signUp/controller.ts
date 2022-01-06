@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
+import { tokensCookieKey } from '@bakinun/common';
 
 import { UserPayload } from 'models/user';
-import { tokensCookieKey } from 'models/token';
 
 import { SignUpService } from './service';
 

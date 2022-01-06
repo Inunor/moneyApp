@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
+import { TokenPayload } from '@bakinun/common';
 
 import { REFRESH_TOKEN_SECRET } from 'config';
-import { TokenPayload } from 'models/token';
 import { signUpHelper } from '__test__/helpers/signUp';
 import { signInHelper } from '__test__/helpers/signIn';
 
