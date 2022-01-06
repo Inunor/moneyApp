@@ -1,8 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { asyncErrorHandler } from '@bakinun/common';
-
-import { validateRequest } from 'middlewares/validate-request';
+import { asyncErrorHandler, validateRequest } from '@bakinun/common';
 
 import { controller } from './controller';
 
