@@ -1,10 +1,14 @@
 import jwt from 'jsonwebtoken';
-import { BadRequestError, TokenPayload, Tokens } from '@bakinun/common';
+import {
+  BadRequestError,
+  TokenPayload,
+  Tokens,
+  ACCESS_TOKEN_SECRET
+} from '@bakinun/common';
 
 import { User, UserPayload } from 'models/user';
 import {
   ACCESS_TOKEN_LIFE,
-  ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_LIFE,
   REFRESH_TOKEN_SECRET
 } from 'config';

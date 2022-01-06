@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { ACCESS_TOKEN_LIFE, ACCESS_TOKEN_SECRET } from 'config';
+import { ACCESS_TOKEN_SECRET } from 'config';
 import { NotAuthorizedError } from 'errors/not-authorized-error';
 import { ForbiddenError } from 'errors/forbidden-error';
 import { TokenPayload, Tokens } from 'models/token';
@@ -24,7 +24,7 @@ describe('Verify middleware', () => {
       const accessToken = jwt.sign(
         { email: 'test@test.com' } as TokenPayload,
         ACCESS_TOKEN_SECRET,
-        { expiresIn: ACCESS_TOKEN_LIFE }
+        { expiresIn: 120 }
       );
       mockRequest = {
         cookies: {

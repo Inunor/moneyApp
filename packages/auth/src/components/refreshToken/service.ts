@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
-import { ForbiddenError, TokenPayload, Tokens } from '@bakinun/common';
+import {
+  ForbiddenError,
+  TokenPayload,
+  Tokens,
+  ACCESS_TOKEN_SECRET
+} from '@bakinun/common';
 
 import { User } from 'models/user';
-import {
-  ACCESS_TOKEN_LIFE,
-  ACCESS_TOKEN_SECRET,
-  REFRESH_TOKEN_SECRET
-} from 'config';
+import { ACCESS_TOKEN_LIFE, REFRESH_TOKEN_SECRET } from 'config';
 
 export class RefreshTokenService {
   async refreshToken(refreshToken: string): Promise<Tokens | void> {
