@@ -11,7 +11,7 @@ interface UserAttrs extends UserPayload {
 }
 
 interface UserDoc extends UserAttrs, Document {
-  validatePassword(data: string): Promise<boolean>;
+  validatePassword(this: UserDoc, plainPassword: string): Promise<boolean>;
 }
 
 interface UserModel extends Model<UserDoc> {
@@ -39,13 +39,14 @@ userSchema.statics['build'] = (attrs: UserAttrs) => {
 };
 
 userSchema.methods['validatePassword'] = async function validatePassword(
+  this: UserDoc,
   plainPassword: string
 ): Promise<boolean> {
   return bcrypt.compare(plainPassword, this.password);
 };
 
 /* istanbul ignore next */
-userSchema.pre('save', async function () {
+userSchema.pre('save', async function (this: UserDoc) {
   if (this.isModified('password')) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
