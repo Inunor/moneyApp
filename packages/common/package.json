@@ -8,8 +8,7 @@
   ],
   "description": "",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run format && npm run lint",
-    "compile": "tsc -p tsconfig.build.json",
+    "build": "npm run clean && tsc && npm run format && npm run lint",
     "clean": "rimraf ./dist ./coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint  --ext .ts --fix",
