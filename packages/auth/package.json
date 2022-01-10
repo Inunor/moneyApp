@@ -13,7 +13,7 @@
     "start:dev": "nodemon",
     "clean": "rimraf ./dist ./coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "lint": "eslint  --ext .ts --fix",
+    "lint": "eslint . --ext .ts --fix",
     "test": "jest",
     "prepare": "npm run build",
     "pre-commit-hook": "npm run format && npm run lint"
