@@ -1,12 +1,15 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "lerna bootstrap",
-    "clean": "lerna run clean",
-    "test": "lerna run test",
+    "build": "lerna run build",
+    "clean": "npx lerna run clean",
+    "test": "npx lerna run test",
     "prepare": "husky install",
-    "pre-commit-hook": "lerna run pre-commit-hook"
+    "pre-commit-hook": "npx lerna run pre-commit-hook"
   },
   "devDependencies": {
     "husky": "^7.0.0",

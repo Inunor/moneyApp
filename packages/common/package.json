@@ -8,13 +8,13 @@
   ],
   "description": "",
   "scripts": {
-    "build": "npm run clean && tsc && npm run format && npm run lint",
+    "build": "yarn run clean && tsc && yarn run format && yarn run lint",
     "clean": "rimraf ./dist ./coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts --fix",
     "test": "jest",
-    "prepare": "npm run build",
-    "pre-commit-hook": "npm run format && npm run lint"
+    "prepare": "yarn run build",
+    "pre-commit-hook": "yarn run format && yarn run lint"
   },
   "author": "",
   "license": "ISC",
