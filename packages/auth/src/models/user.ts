@@ -1,5 +1,4 @@
 import { Document, Model, Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
 
 export interface UserPayload {
   email: string;
@@ -42,14 +41,14 @@ userSchema.methods['validatePassword'] = async function validatePassword(
   this: UserDoc,
   plainPassword: string
 ): Promise<boolean> {
-  return bcrypt.compare(plainPassword, this.password);
+  const a = plainPassword === this.password;
+  return new Promise((resolve) => resolve(a));
 };
 
 /* istanbul ignore next */
 userSchema.pre('save', async function (this: UserDoc) {
   if (this.isModified('password')) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = this.password + 10;
   }
 });
 
