@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npx lerna run build",
+    "build": "npx lerna run build --stream",
     "clean": "npx lerna run clean",
     "test": "npx lerna run test",
     "prepare": "husky install",
