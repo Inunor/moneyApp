@@ -9,20 +9,19 @@
   "description": "",
   "scripts": {
     "build": "yarn run clean && tsc && yarn run format && yarn run lint",
-    "start": "yarn run build && NODE_PATH=./dist node dist/server.js",
+    "start": "NODE_PATH=./dist node dist/server.js",
     "start:dev": "nodemon",
     "clean": "rimraf ./dist ./coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts --fix",
     "test": "jest",
-    "prepare": "yarn run build",
     "pre-commit-hook": "yarn run format && yarn run lint"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@bakinun/common": "^1.0.0",
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
@@ -31,7 +30,7 @@
     "mongoose": "^6.0.13"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.2",

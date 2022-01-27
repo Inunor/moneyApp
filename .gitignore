@@ -9,3 +9,5 @@ coverage
 
 # Ignore ide settings
 .idea
+
+.DS_STORE

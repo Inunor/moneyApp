@@ -13,7 +13,6 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts --fix",
     "test": "jest",
-    "prepare": "yarn run build",
     "pre-commit-hook": "yarn run format && yarn run lint"
   },
   "author": "",
