@@ -8,8 +8,8 @@ WORKDIR /app
 
 FROM base as dev
 
-COPY *.json .
-COPY yarn.lock .
+COPY *.json ./
+COPY yarn.lock ./
 
 COPY packages/auth/*.json ./packages/auth/
 COPY packages/common/*.json ./packages/common/
@@ -25,8 +25,8 @@ RUN yarn run build
 
 FROM base as prod
 
-COPY *.json .
-COPY yarn.lock .
+COPY *.json ./
+COPY yarn.lock ./
 
 COPY --from=dev /app/packages/auth/package.json ./packages/auth/package.json
 COPY --from=dev /app/packages/auth/dist ./packages/auth/dist
