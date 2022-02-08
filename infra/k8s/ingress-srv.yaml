@@ -10,7 +10,7 @@ spec:
     - host: auth.com
       http:
         paths:
-          - path: /auth
+          - path: /api/users/?(.*)
             pathType: Prefix
             backend:
               service:

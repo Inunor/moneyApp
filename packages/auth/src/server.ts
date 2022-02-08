@@ -4,7 +4,7 @@ import { connect } from 'mongoose';
 import app from './app';
 
 const start = async () => {
-  const mongoUri = 'mongodb://localhost:27017/auth';
+  const mongoUri = 'mongodb://auth-mongo-srv:27017/auth';
   try {
     await connect(mongoUri);
     console.log('Connected to MongoDB');
