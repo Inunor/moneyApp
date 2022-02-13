@@ -1,16 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { ACCESS_TOKEN_SECRET } from 'config';
 import { Tokens } from 'models/token';
 
 import { NotAuthorizedError } from '../errors/not-authorized-error';
 import { ForbiddenError } from '../errors/forbidden-error';
 
+// TODO ACCESS_TOKEN_SECRET maybe wrap verify in another function
 export const verify = (
   request: Request,
   _response: Response,
-  next: NextFunction
+  next: NextFunction,
+  ACCESS_TOKEN_SECRET: string
 ): void => {
   const accessToken = (request.cookies.jwt as Tokens)?.accessToken;
 

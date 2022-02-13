@@ -11,8 +11,8 @@ import { REFRESH_TOKEN_SECRET_KEY } from './config';
 
 const start = async () => {
   try {
-    envChecker(process.env, REFRESH_TOKEN_SECRET_KEY);
     envChecker(process.env, ACCESS_TOKEN_SECRET_KEY);
+    envChecker(process.env, REFRESH_TOKEN_SECRET_KEY);
     const mongoUri = envChecker(process.env, MONGO_URI_KEY);
 
     await connect(mongoUri);

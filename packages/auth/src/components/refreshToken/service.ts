@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken';
 import {
+  ACCESS_TOKEN_SECRET_KEY,
+  envChecker,
   ForbiddenError,
   TokenPayload,
-  Tokens,
-  ACCESS_TOKEN_SECRET
+  Tokens
 } from '@bakinun/common';
 
 import { User } from 'models/user';
-import { ACCESS_TOKEN_LIFE, REFRESH_TOKEN_SECRET } from 'config';
+import { ACCESS_TOKEN_LIFE, REFRESH_TOKEN_SECRET_KEY } from 'config';
 
 export class RefreshTokenService {
   async refreshToken(refreshToken: string): Promise<Tokens | void> {
@@ -16,7 +17,7 @@ export class RefreshTokenService {
     try {
       jwtPayload = jwt.verify(
         refreshToken,
-        REFRESH_TOKEN_SECRET
+        envChecker(process.env, REFRESH_TOKEN_SECRET_KEY)
       ) as TokenPayload;
     } catch (e) {
       throw new ForbiddenError(
@@ -35,7 +36,7 @@ export class RefreshTokenService {
 
     const accessToken = jwt.sign(
       { email: user.email } as TokenPayload,
-      ACCESS_TOKEN_SECRET,
+      envChecker(process.env, ACCESS_TOKEN_SECRET_KEY),
       { expiresIn: ACCESS_TOKEN_LIFE }
     );
 

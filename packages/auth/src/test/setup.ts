@@ -1,9 +1,16 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import { ACCESS_TOKEN_SECRET_KEY, MONGO_URI_KEY } from '@bakinun/common';
+
+import { REFRESH_TOKEN_SECRET_KEY } from '../config';
 
 let mongo: MongoMemoryServer;
 
 beforeAll(async () => {
+  process.env[ACCESS_TOKEN_SECRET_KEY] = 'access_token_secret_test';
+  process.env[REFRESH_TOKEN_SECRET_KEY] = 'refresh_token_secret_test';
+  process.env[MONGO_URI_KEY] = 'mongo_uri_test';
+
   mongo = await MongoMemoryServer.create();
   const uri = mongo.getUri();
 
