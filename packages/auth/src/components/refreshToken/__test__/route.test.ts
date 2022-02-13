@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
-import { TokenPayload } from '@bakinun/common';
+import { envChecker, TokenPayload } from '@bakinun/common';
 
-import { REFRESH_TOKEN_SECRET } from 'config';
 import { signUpHelper } from '__test__/helpers/signUp';
 import { signInHelper } from '__test__/helpers/signIn';
 
 import { RefreshTokenPayload } from '../model';
 import { url } from '../route';
 import app from '../../../app';
+import { REFRESH_TOKEN_SECRET_KEY } from '../../../config';
 
 describe('RefreshToken', () => {
   describe('Success', () => {
@@ -51,7 +51,7 @@ describe('RefreshToken', () => {
     it('should return 403 with expired token', async () => {
       const refreshToken = jwt.sign(
         { email: 'test@test.com' } as TokenPayload,
-        REFRESH_TOKEN_SECRET,
+        envChecker(process.env, REFRESH_TOKEN_SECRET_KEY),
         { expiresIn: 0 }
       );
 
@@ -80,7 +80,7 @@ describe('RefreshToken', () => {
 
         const refreshToken = jwt.sign(
           { email: 'anotherTest@test.com' } as TokenPayload,
-          REFRESH_TOKEN_SECRET,
+          envChecker(process.env, REFRESH_TOKEN_SECRET_KEY),
           { expiresIn: 60 }
         );
 
@@ -108,7 +108,7 @@ describe('RefreshToken', () => {
 
         const refreshToken = jwt.sign(
           { email: 'test@test.com' } as TokenPayload,
-          REFRESH_TOKEN_SECRET,
+          envChecker(process.env, REFRESH_TOKEN_SECRET_KEY),
           { expiresIn: 60 }
         );
 

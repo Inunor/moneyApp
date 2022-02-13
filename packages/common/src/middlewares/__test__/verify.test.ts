@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { ACCESS_TOKEN_SECRET } from 'config';
 import { NotAuthorizedError } from 'errors/not-authorized-error';
 import { ForbiddenError } from 'errors/forbidden-error';
 import { TokenPayload, Tokens } from 'models/token';
@@ -9,6 +8,8 @@ import { TokenPayload, Tokens } from 'models/token';
 import { verify } from '../verify';
 
 describe('Verify middleware', () => {
+  const ACCESS_TOKEN_SECRET = 'access_token_secret';
+
   let mockRequest: Partial<Request>;
   let mockResponse: Partial<Response>;
   let mockNextFunction: NextFunction;
@@ -35,7 +36,8 @@ describe('Verify middleware', () => {
       verify(
         mockRequest as Request,
         mockResponse as Response,
-        mockNextFunction
+        mockNextFunction,
+        ACCESS_TOKEN_SECRET
       );
 
       expect(mockNextFunction).toHaveBeenCalled();
@@ -52,7 +54,8 @@ describe('Verify middleware', () => {
         verify(
           mockRequest as Request,
           mockResponse as Response,
-          mockNextFunction
+          mockNextFunction,
+          ACCESS_TOKEN_SECRET
         );
 
       expect(f).toThrow(NotAuthorizedError);
@@ -75,7 +78,8 @@ describe('Verify middleware', () => {
         verify(
           mockRequest as Request,
           mockResponse as Response,
-          mockNextFunction
+          mockNextFunction,
+          ACCESS_TOKEN_SECRET
         );
 
       expect(f).toThrow(ForbiddenError);

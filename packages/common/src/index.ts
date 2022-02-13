@@ -13,3 +13,5 @@ export * from './middlewares/validate-request';
 export * from './middlewares/verify';
 
 export * from './models/token';
+
+export * from './utils/env-checker';

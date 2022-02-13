@@ -1,16 +1,17 @@
 import jwt from 'jsonwebtoken';
 import {
+  ACCESS_TOKEN_SECRET_KEY,
   BadRequestError,
+  envChecker,
   TokenPayload,
-  Tokens,
-  ACCESS_TOKEN_SECRET
+  Tokens
 } from '@bakinun/common';
 
 import { User, UserPayload } from 'models/user';
 import {
   ACCESS_TOKEN_LIFE,
   REFRESH_TOKEN_LIFE,
-  REFRESH_TOKEN_SECRET
+  REFRESH_TOKEN_SECRET_KEY
 } from 'config';
 
 export class SignInService {
@@ -29,12 +30,12 @@ export class SignInService {
 
     const accessToken = jwt.sign(
       { email } as TokenPayload,
-      ACCESS_TOKEN_SECRET,
+      envChecker(process.env, ACCESS_TOKEN_SECRET_KEY),
       { expiresIn: ACCESS_TOKEN_LIFE }
     );
     const refreshToken = jwt.sign(
       { email } as TokenPayload,
-      REFRESH_TOKEN_SECRET,
+      envChecker(process.env, REFRESH_TOKEN_SECRET_KEY),
       { expiresIn: REFRESH_TOKEN_LIFE }
     );
 
