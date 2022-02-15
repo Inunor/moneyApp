@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import {
-  ACCESS_TOKEN_SECRET_KEY,
   envChecker,
   ForbiddenError,
   TokenPayload,
@@ -8,7 +7,11 @@ import {
 } from '@bakinun/common';
 
 import { User } from 'models/user';
-import { ACCESS_TOKEN_LIFE, REFRESH_TOKEN_SECRET_KEY } from 'config';
+import {
+  ACCESS_TOKEN_LIFE,
+  REFRESH_TOKEN_SECRET_KEY,
+  ACCESS_TOKEN_SECRET_KEY
+} from 'config';
 
 export class RefreshTokenService {
   async refreshToken(refreshToken: string): Promise<Tokens | void> {

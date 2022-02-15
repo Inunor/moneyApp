@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import {
-  ACCESS_TOKEN_SECRET_KEY,
   BadRequestError,
   envChecker,
   TokenPayload,
@@ -11,7 +10,8 @@ import { UserPayload, User } from 'models/user';
 import {
   ACCESS_TOKEN_LIFE,
   REFRESH_TOKEN_LIFE,
-  REFRESH_TOKEN_SECRET_KEY
+  REFRESH_TOKEN_SECRET_KEY,
+  ACCESS_TOKEN_SECRET_KEY
 } from 'config';
 
 export class SignUpService {

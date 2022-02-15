@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { ACCESS_TOKEN_SECRET_KEY, MONGO_URI_KEY } from '@bakinun/common';
+import { MONGO_URI_KEY } from '@bakinun/common';
 
-import { REFRESH_TOKEN_SECRET_KEY } from '../config';
+import { REFRESH_TOKEN_SECRET_KEY, ACCESS_TOKEN_SECRET_KEY } from '../config';
 
 let mongo: MongoMemoryServer;
 
