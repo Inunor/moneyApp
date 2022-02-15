@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+/* istanbul ignore file */
 import { validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
 
 import { RequestValidationError } from '../errors/request-validation-error';
 

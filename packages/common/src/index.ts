@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export * from './config';
 
 export * from './errors/bad-request-error';
