@@ -17,7 +17,7 @@ spec:
           image: bakinun/auth
           env:
             - name: MONGO_URI
-              value: 'mongodb+srv://<username>:<password>@cluster0.9yapl.mongodb.net/auth?retryWrites=true&w=majority'
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
@@ -28,16 +28,6 @@ spec:
                 secretKeyRef:
                   name: jwt-secrets
                   key: REFRESH_TOKEN_SECRET
-            - name: MONGO_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secrets
-                  key: MONGO_USERNAME
-            - name: MONGO_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secrets
-                  key: MONGO_PASSWORD
 ---
 apiVersion: v1
 kind: Service

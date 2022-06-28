@@ -7,6 +7,9 @@ docker run [id or tag name]
 docker run -it [id or tag name] sh
 docker exec -it [id or tag name] sh (running container)
 
+docker container list
+docker image list
+
 # Kubernetes
 
 kubectl apply -f [file or .]
