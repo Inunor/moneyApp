@@ -16,4 +16,3 @@ export * from './middlewares/verify';
 export * from './models/token';
 
 export * from './utils/env-checker';
-export * from './utils/mongo-uri';
