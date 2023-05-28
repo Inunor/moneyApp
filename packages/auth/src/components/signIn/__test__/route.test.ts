@@ -38,9 +38,9 @@ describe('SignIn', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "email",
               "message": "Email must be valid",
             },
@@ -54,9 +54,9 @@ describe('SignIn', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "password",
               "message": "Password must be between 2 and 20 characters",
             },
@@ -70,9 +70,9 @@ describe('SignIn', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "email",
               "message": "Email must be valid",
             },
@@ -86,9 +86,9 @@ describe('SignIn', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "password",
               "message": "Password must be between 2 and 20 characters",
             },
@@ -106,9 +106,9 @@ describe('SignIn', () => {
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);
       expect(signInResponse.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "message": "Invalid credentials",
             },
           ],
@@ -125,9 +125,9 @@ describe('SignIn', () => {
       expect(signUpResponse.status).toBe(201);
       expect(signInResponse.status).toBe(400);
       expect(signInResponse.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "message": "Invalid credentials",
             },
           ],

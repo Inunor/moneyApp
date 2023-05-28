@@ -40,7 +40,7 @@ describe('Async error handler middleware', () => {
 
     await helper(fnPromise);
 
-    expect(mockNextFunction).toBeCalledWith(error);
+    expect(mockNextFunction).toHaveBeenCalledWith(error);
   });
 
   it('should not call async error handler', async () => {
@@ -50,6 +50,6 @@ describe('Async error handler middleware', () => {
 
     await helper(fnPromise);
 
-    expect(mockNextFunction).not.toBeCalled();
+    expect(mockNextFunction).not.toHaveBeenCalled();
   });
 });

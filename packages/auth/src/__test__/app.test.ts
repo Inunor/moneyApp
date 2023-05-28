@@ -10,9 +10,9 @@ describe('App', () => {
 
     expect(response.status).toBe(404);
     expect(response.body).toMatchInlineSnapshot(`
-      Object {
-        "errors": Array [
-          Object {
+      {
+        "errors": [
+          {
             "message": "Route not found",
           },
         ],

@@ -13,8 +13,8 @@ describe('Bad request error', () => {
 
   it('should have correct message', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
-      Array [
-        Object {
+      [
+        {
           "message": "test",
         },
       ]

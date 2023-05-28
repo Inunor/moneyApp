@@ -14,7 +14,7 @@ describe('SignOut', () => {
     expect(signUpResponse.status).toBe(201);
     expect(signOutResponse.status).toBe(200);
     expect(signOutResponse.get('Set-Cookie')).toMatchInlineSnapshot(`
-      Array [
+      [
         "jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT",
       ]
     `);

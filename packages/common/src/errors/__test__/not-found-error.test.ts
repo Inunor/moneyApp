@@ -13,8 +13,8 @@ describe('Not found error', () => {
 
   it('should have correct message', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
-      Array [
-        Object {
+      [
+        {
           "message": "test",
         },
       ]

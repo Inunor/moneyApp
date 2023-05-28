@@ -37,9 +37,9 @@ describe('RefreshToken', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "refreshToken",
               "message": "Refresh token is required",
             },
@@ -63,9 +63,9 @@ describe('RefreshToken', () => {
 
       expect(response.status).toBe(403);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "message": "Refresh token was expired. Please make a new sign in request",
             },
           ],
@@ -92,9 +92,9 @@ describe('RefreshToken', () => {
 
         expect(response.status).toBe(403);
         expect(response.body).toMatchInlineSnapshot(`
-          Object {
-            "errors": Array [
-              Object {
+          {
+            "errors": [
+              {
                 "message": "Refresh token is not in a database",
               },
             ],
@@ -120,9 +120,9 @@ describe('RefreshToken', () => {
 
         expect(response.status).toBe(403);
         expect(response.body).toMatchInlineSnapshot(`
-          Object {
-            "errors": Array [
-              Object {
+          {
+            "errors": [
+              {
                 "message": "Refresh token is not in a database",
               },
             ],
