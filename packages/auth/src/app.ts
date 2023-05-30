@@ -1,5 +1,4 @@
 import express from 'express';
-import { json } from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { errorHandler, NotFoundError } from '@bakinun/common';
 
@@ -12,7 +11,7 @@ const app = express();
 
 // TODO add { secure } flag to res.cookie methods (false for dev, true for prod), trust-proxy
 
-app.use(json());
+app.use(express.json());
 app.use(cookieParser());
 
 app.use(signUpRouter);

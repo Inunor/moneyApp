@@ -18,12 +18,12 @@ describe('Request validation error', () => {
 
   it('should have correct message', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
-      Array [
-        Object {
+      [
+        {
           "field": "first_test_param",
           "message": "first_test_msg",
         },
-        Object {
+        {
           "field": "second_test_param",
           "message": "second_test_msg",
         },

@@ -29,9 +29,9 @@ describe('SignUp', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "email",
               "message": "Email must be valid",
             },
@@ -45,9 +45,9 @@ describe('SignUp', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "password",
               "message": "Password must be between 2 and 20 characters",
             },
@@ -61,9 +61,9 @@ describe('SignUp', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "email",
               "message": "Email must be valid",
             },
@@ -77,9 +77,9 @@ describe('SignUp', () => {
 
       expect(response.status).toBe(400);
       expect(response.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "field": "password",
               "message": "Password must be between 2 and 20 characters",
             },
@@ -95,9 +95,9 @@ describe('SignUp', () => {
       expect(firstResponse.status).toBe(201);
       expect(secondResponse.status).toBe(400);
       expect(secondResponse.body).toMatchInlineSnapshot(`
-        Object {
-          "errors": Array [
-            Object {
+        {
+          "errors": [
+            {
               "message": "Email in use",
             },
           ],
