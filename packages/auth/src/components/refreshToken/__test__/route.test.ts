@@ -40,7 +40,7 @@ describe('RefreshToken', () => {
         {
           "errors": [
             {
-              "field": "refreshToken",
+              "field": "field",
               "message": "Refresh token is required",
             },
           ],

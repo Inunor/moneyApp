@@ -41,7 +41,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "email",
+              "field": "field",
               "message": "Email must be valid",
             },
           ],
@@ -57,7 +57,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "password",
+              "field": "field",
               "message": "Password must be between 2 and 20 characters",
             },
           ],
@@ -73,7 +73,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "email",
+              "field": "field",
               "message": "Email must be valid",
             },
           ],
@@ -89,7 +89,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "password",
+              "field": "field",
               "message": "Password must be between 2 and 20 characters",
             },
           ],
