@@ -31,7 +31,7 @@ describe('Error handler middleware', () => {
 
     expect(mockResponse.status).toHaveBeenCalledWith(notFoundError.statusCode);
     expect(mockResponse.send).toHaveBeenCalledWith({
-      errors: [{ message: notFoundText }]
+      errors: [{ msg: notFoundText }]
     });
   });
 
@@ -47,7 +47,7 @@ describe('Error handler middleware', () => {
 
     expect(mockResponse.status).toHaveBeenCalledWith(400);
     expect(mockResponse.send).toHaveBeenCalledWith({
-      errors: [{ message: 'Something went wrong' }]
+      errors: [{ msg: 'Something went wrong' }]
     });
   });
 });

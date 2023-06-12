@@ -11,6 +11,6 @@ export class BadRequestError extends CustomError {
   }
 
   override serializeErrors(): SerializedError[] {
-    return [{ message: this.message }];
+    return [{ msg: this.message }];
   }
 }

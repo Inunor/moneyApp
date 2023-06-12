@@ -33,7 +33,7 @@ describe('SignUp', () => {
           "errors": [
             {
               "field": "field",
-              "message": "Email must be valid",
+              "message": "SignUp: Email must be valid",
             },
           ],
         }
@@ -49,7 +49,7 @@ describe('SignUp', () => {
           "errors": [
             {
               "field": "field",
-              "message": "Password must be between 2 and 20 characters",
+              "message": "SignUp: Password must be between 2 and 20 characters",
             },
           ],
         }
@@ -65,7 +65,7 @@ describe('SignUp', () => {
           "errors": [
             {
               "field": "field",
-              "message": "Email must be valid",
+              "message": "SignUp: Email must be valid",
             },
           ],
         }
@@ -81,7 +81,7 @@ describe('SignUp', () => {
           "errors": [
             {
               "field": "field",
-              "message": "Password must be between 2 and 20 characters",
+              "message": "SignUp: Password must be between 2 and 20 characters",
             },
           ],
         }

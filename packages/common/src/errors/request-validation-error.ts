@@ -13,11 +13,8 @@ export class RequestValidationError extends CustomError {
   }
 
   override serializeErrors(): SerializedError[] {
-    this.errors.forEach((error) => {
-      console.log(error); // check error properties type, msg AND location, path, value
-    });
     return this.errors.map((error) => {
-      return { message: error.msg, field: error.type };
+      return { msg: error.msg };
     });
   }
 }

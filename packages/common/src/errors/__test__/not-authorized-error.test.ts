@@ -15,7 +15,7 @@ describe('Not authorized error', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
       [
         {
-          "message": "test",
+          "msg": "test",
         },
       ]
     `);

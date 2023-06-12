@@ -7,8 +7,8 @@ describe('Request validation error', () => {
 
   beforeEach(() => {
     error = new RequestValidationError([
-      { msg: 'first_test_msg', type: 'field' } as ValidationError,
-      { msg: 'second_test_msg', type: 'field' } as ValidationError
+      { msg: 'first_test_msg' } as ValidationError,
+      { msg: 'second_test_msg' } as ValidationError
     ]);
   });
 
@@ -20,12 +20,10 @@ describe('Request validation error', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
       [
         {
-          "field": "field",
-          "message": "first_test_msg",
+          "msg": "first_test_msg",
         },
         {
-          "field": "field",
-          "message": "second_test_msg",
+          "msg": "second_test_msg",
         },
       ]
     `);
