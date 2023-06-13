@@ -40,8 +40,7 @@ describe('RefreshToken', () => {
         {
           "errors": [
             {
-              "field": "refreshToken",
-              "message": "Refresh token is required",
+              "msg": "RefreshToken: refresh token is required",
             },
           ],
         }
@@ -66,7 +65,7 @@ describe('RefreshToken', () => {
         {
           "errors": [
             {
-              "message": "Refresh token was expired. Please make a new sign in request",
+              "msg": "Refresh token was expired. Please make a new sign in request",
             },
           ],
         }
@@ -95,7 +94,7 @@ describe('RefreshToken', () => {
           {
             "errors": [
               {
-                "message": "Refresh token is not in a database",
+                "msg": "Refresh token is not in a database",
               },
             ],
           }
@@ -123,7 +122,7 @@ describe('RefreshToken', () => {
           {
             "errors": [
               {
-                "message": "Refresh token is not in a database",
+                "msg": "Refresh token is not in a database",
               },
             ],
           }

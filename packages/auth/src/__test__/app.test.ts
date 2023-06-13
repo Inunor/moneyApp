@@ -13,7 +13,7 @@ describe('App', () => {
       {
         "errors": [
           {
-            "message": "Route not found",
+            "msg": "Route not found",
           },
         ],
       }

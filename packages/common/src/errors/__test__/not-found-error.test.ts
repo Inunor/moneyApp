@@ -15,7 +15,7 @@ describe('Not found error', () => {
     expect(error.serializeErrors()).toMatchInlineSnapshot(`
       [
         {
-          "message": "test",
+          "msg": "test",
         },
       ]
     `);

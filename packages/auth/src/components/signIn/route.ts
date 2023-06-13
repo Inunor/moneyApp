@@ -10,11 +10,11 @@ const router = express.Router();
 router.post(
   url,
   [
-    body('email').isEmail().withMessage('Email must be valid'),
+    body('email').isEmail().withMessage('SignIn: email must be valid'),
     body('password')
       .trim()
       .isLength({ min: 2, max: 20 })
-      .withMessage('Password must be between 2 and 20 characters')
+      .withMessage('SignIn: password must be between 2 and 20 characters')
   ],
   validateRequest,
   asyncErrorHandler(controller)

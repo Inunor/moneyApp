@@ -11,6 +11,6 @@ export class NotAuthorizedError extends CustomError {
   }
 
   serializeErrors(): SerializedError[] {
-    return [{ message: this.message }];
+    return [{ msg: this.message }];
   }
 }

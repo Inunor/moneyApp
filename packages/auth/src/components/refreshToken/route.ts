@@ -13,7 +13,7 @@ router.post(
     body('refreshToken')
       .not()
       .isEmpty()
-      .withMessage('Refresh token is required')
+      .withMessage('RefreshToken: refresh token is required')
   ],
   validateRequest,
   asyncErrorHandler(controller)

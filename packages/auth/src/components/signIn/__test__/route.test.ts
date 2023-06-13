@@ -41,8 +41,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "email",
-              "message": "Email must be valid",
+              "msg": "SignIn: email must be valid",
             },
           ],
         }
@@ -57,8 +56,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "password",
-              "message": "Password must be between 2 and 20 characters",
+              "msg": "SignIn: password must be between 2 and 20 characters",
             },
           ],
         }
@@ -73,8 +71,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "email",
-              "message": "Email must be valid",
+              "msg": "SignIn: email must be valid",
             },
           ],
         }
@@ -89,8 +86,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "field": "password",
-              "message": "Password must be between 2 and 20 characters",
+              "msg": "SignIn: password must be between 2 and 20 characters",
             },
           ],
         }
@@ -109,7 +105,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "message": "Invalid credentials",
+              "msg": "Invalid credentials",
             },
           ],
         }
@@ -128,7 +124,7 @@ describe('SignIn', () => {
         {
           "errors": [
             {
-              "message": "Invalid credentials",
+              "msg": "Invalid credentials",
             },
           ],
         }

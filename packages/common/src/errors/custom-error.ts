@@ -1,7 +1,6 @@
-export interface SerializedError {
-  message: string;
-  field?: string;
-}
+import { ValidationError } from 'express-validator';
+
+export type SerializedError = Pick<ValidationError, 'msg'>;
 
 export abstract class CustomError extends Error {
   abstract statusCode: number;
