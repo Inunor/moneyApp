@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "paths": {
+      "@bakinun/*": ["*/src"],
       "@bakinun/auth": ["packages/auth"],
-      "@bakinun/common": ["packages/common"],
-      "@bakinun/*": ["*/src"]
+      "@bakinun/common": ["packages/common"]
     },
 
     /* Projects */
