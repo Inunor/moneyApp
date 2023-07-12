@@ -1,6 +1,6 @@
 # base stage
 
-FROM node:alpine as base
+FROM node:18.15-alpine as base
 
 WORKDIR /app
 
@@ -14,7 +14,9 @@ COPY yarn.lock ./
 COPY packages/auth/*.json ./packages/auth/
 COPY packages/common/*.json ./packages/common/
 
+RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN yarn install
+RUN apk del .gyp
 
 COPY packages/auth/ ./packages/auth/
 COPY packages/common/ ./packages/common/
