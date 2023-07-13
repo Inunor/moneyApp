@@ -12,6 +12,7 @@ COPY *.json ./
 COPY yarn.lock ./
 
 COPY packages/auth/*.json ./packages/auth/
+# Copy common package inside auth container -> it is a local package, not npm hosted 
 COPY packages/common/*.json ./packages/common/
 
 RUN apk add --no-cache --virtual .gyp python3 make g++
