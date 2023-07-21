@@ -10,6 +10,7 @@ FROM base as dev
 
 COPY *.json ./
 COPY yarn.lock ./
+COPY jest.config.ts ./
 
 COPY packages/auth/*.json ./packages/auth/
 # Copy common package inside auth container -> it is a local package, not npm hosted 
